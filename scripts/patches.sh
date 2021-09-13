@@ -4,7 +4,8 @@ sed -i "s/option sfe_flow '1'/option sfe_flow '0'/" $config_file_turboacc
 sed -i "s/option sfe_bridge '1'/option sfe_bridge '0'/" $config_file_turboacc
 sed -i "/dep.*INCLUDE_.*=n/d" `find package/ -follow -type f -path '*/luci-app-turboacc/Makefile'`
 
-sed -i "s/option limit_enable '1'/option limit_enable '0'/" `find package/ -follow -type f -path '*/nft-qos/files/nft-qos.config'`
+sed -i "s/option limit_enable '1'/option limit_enable '0'/" `find package/ -follow -type f -path '*/vsftpd/files/vsftpd.uci'`
+sed -i "s/option enabled '1'/option enabled '0'/" `find package/ -follow -type f -path '*/nft-qos/files/nft-qos.config'`
 sed -i "/\/etc\/coremark\.sh/d" `find package/ -follow -type f -path '*/coremark/coremark'`
 sed -i 's/192.168.1.1/192.168.2.1/' package/base-files/files/bin/config_generate
 sed -i 's/=1/=0/g' package/kernel/linux/files/sysctl-br-netfilter.conf
@@ -20,6 +21,7 @@ dir_ssrp=`find package/ -follow -type d -path '*/luci-app-ssr-plus'`
 cp luci-app-ssr-plus/root/etc/config/shadowsocksr ${dir_ssrp}/root/etc/config/shadowsocksr
 cp luci-app-ssr-plus/root/etc/ssrplus/black.list ${dir_ssrp}/root/etc/ssrplus/black.list
 cp luci-app-ssr-plus/root/etc/ssrplus/white.list ${dir_ssrp}/root/etc/ssrplus/white.list
+cp luci-app-ssr-plus/root/etc/ssrplus/blackipv6.sh ${dir_ssrp}/root/etc/ssrplus/blackipv6.sh
 cp luci-app-ssr-plus/root/usr/bin/ssr-rules ${dir_ssrp}/root/usr/bin/ssr-rules
 rm -rf luci-app-ssr-plus/
 
